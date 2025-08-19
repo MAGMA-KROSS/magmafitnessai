@@ -1,26 +1,73 @@
 @import "tailwindcss";
+@layer components {
+  .input-field {
+    width: 100%;
+    background-color: #1a202c; /* bg-gray-900 */
+    border: 1px solid #374151; /* border-gray-700 */
+    color: #fff; /* text-white */
+    border-radius: 0.5rem; /* rounded-lg */
+    padding-left: 1rem; /* px-4 */
+    padding-right: 1rem; /* px-4 */
+    padding-top: 0.625rem; /* py-2.5 */
+    padding-bottom: 0.625rem; /* py-2.5 */
+    transition: all 0.3s;
+    outline: none;
+  }
+  .input-field:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #7c3aed; /* focus:ring-2 focus:ring-purple-600 */
+    border-color: #6d28d9; /* focus:border-purple-700 */
+  }
+  .input-field::placeholder {
+    color: #6b7280; /* placeholder-gray-500 */
+  }
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  .radio-label, .checkbox-label {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    border: 2px solid #374151; /* border-gray-700 */
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .radio-label:hover, .checkbox-label:hover {
+    border-color: #7c3aed; /* hover:border-purple-600 */
+    background-color: rgba(21, 185, 214, 0.2); /* hover:bg-cyan-900/20 */
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  .radio-label-checked, .checkbox-label-checked {
+    border-color: #7c3aed; /* border-purple-600 */
+    background-color: rgba(21, 185, 214, 0.3); /* bg-cyan-900/30 */
+    color: #a78bfa; /* text-purple-400 */
+    box-shadow: 0 4px 12px 0 rgba(124, 58, 237, 0.1); /* shadow-lg shadow-purple-700/10 */
   }
 }
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* For WebKit-based browsers (Chrome, Safari, Edge, etc.) */
+::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
 }
+
+::-webkit-scrollbar-track {
+  background: #1e1e1e; /* Color of the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #212121; /* Color of the scroll thumb */
+  border-radius: 20px; /* Roundness of the scroll thumb */
+  border: 2px solid #1e1e1e; /* Creates a padding effect */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #2e2e2e; 
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #555 #1e1e1e;
+  background-color: #000; 
+  scroll-behavior: smooth;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
