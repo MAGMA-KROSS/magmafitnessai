@@ -12,7 +12,7 @@ export const HeroSection = ({
   headline = "Your Personal AI Fitness Coach — Anytime, Anywhere",
   subtext = "Get customized workout and diet plans tailored just for you.",
   buttonLabel = "Start Your Fitness Journey",
-  buttonLink = "/WorkoutPlan",
+  buttonLink = "/calculators",
 }) => {
   
   // Animation variants for Framer Motion

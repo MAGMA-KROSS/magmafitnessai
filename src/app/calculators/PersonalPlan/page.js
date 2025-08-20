@@ -89,7 +89,6 @@ export default function App() {
     setError('');
     setPlan('');
 
-    // Basic validation
     for (const key in formData) {
       if (formData[key] === '') {
         setError(`Please fill out the '${key.replace(/_/g, ' ')}' field.`);
@@ -99,35 +98,10 @@ export default function App() {
     }
 
     try {
-      // NOTE: This is a direct call to the Gemini API for demonstration.
-      // In a real app, this logic would be on your backend server.
-      // The empty key will be handled by the environment.
-      const apiKey = "AIzaSyCrvVFsmztJF232MI8tEK2mn_mK-r34SUE"; // CORRECTED LINE: Removed the syntax error.
-      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
-
-      const prompt = `
-        You are a professional fitness and nutrition coach AI.
-        Your task is to create a complete personalized fitness and diet plan based on the given input JSON.
-        Format the output in Markdown.
-        Include the following sections clearly:
-        1. Body Stats (Estimated Body Fat %, BMI, BMR, TDEE)
-        2. Daily Nutrition Goals (Calories, Protein, Carbs, Fats)
-        3. Weekly Workout Plan (7-day schedule with exercises, sets, reps, rest)
-        4. Diet Plan (3 Main Meals + 2 Snacks with food items and macros)
-        5. Pro Tips (Lifestyle, recovery, hydration, sleep advice)
-
-        Use the INPUT JSON as dynamic values and generate plans accordingly. Do not use repeating day names like "Thursday: Repeat Day 1". Write out the full plan for each day.
-        
-        INPUT JSON:
-        ${JSON.stringify(formData, null, 2)}
-      `;
-
-      const response = await fetch(apiUrl, {
+      const response = await fetch('/api/generatePlan', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }]
-        })
+        body: JSON.stringify(formData)
       });
 
       if (!response.ok) {
@@ -135,8 +109,7 @@ export default function App() {
         throw new Error(`API Error: ${response.statusText} - ${errorBody.error?.message || 'Unknown error'}`);
       }
 
-      const result = await response.json();
-      const planText = result.candidates[0].content.parts[0].text;
+      const planText = await response.text();
       setPlan(planText);
 
     } catch (err) {

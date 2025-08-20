@@ -16,7 +16,7 @@ export const Footer = () => {
             <Link href="/about" className="text-sm hover:text-white transition-colors duration-300">
               About
             </Link>
-            <Link href="/contact" className="text-sm hover:text-white transition-colors duration-300">
+            <Link href="/#Contact" className="text-sm hover:text-white transition-colors duration-300">
               Contact
             </Link>
           </nav>
