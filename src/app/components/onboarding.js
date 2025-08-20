@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Dumbbell, Waves, Users, Zap, Utensils, HeartPulse, ShieldCheck, Info, Link } from 'lucide-react';
 import { useAuth } from "@clerk/nextjs";
-import Loading from './Loading'
 // Neon glow button component
 const NeonButton = ({ children, onClick, disabled = false, type = 'button', className = '' }) => (
   <button

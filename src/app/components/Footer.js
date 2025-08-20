@@ -41,7 +41,7 @@ export const Footer = () => {
 
         {/* Copyright Notice */}
         <div className="mt-8 pt-8 border-t border-neutral-800 text-center">
-          <p className="text-sm text-neutral-500">&copy; 2025 Magma Portfolio. All rights reserved.</p>
+          <p className="text-sm text-neutral-500">&copy; 2025 MagmaFitnessAi. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -1,3 +1,4 @@
+import  Contact from "./components/Contact";
 import { FeaturesOverview } from "./components/Feature";
 import { Footer } from "./components/Footer";
 import { HeroSection } from "./components/Hero";
@@ -11,7 +12,7 @@ export default function App() {
     { href: '#Feature', label: 'Features' },
     { href: '/calculators', label: 'Calculators' },
     { href: '/dashboard', label: 'Dashboard' },
-    { href: '/contact', label: 'Contact' },
+    { href: '#Contact', label: 'Contact' },
   ];
 
   const ctaButton = {
@@ -25,6 +26,7 @@ export default function App() {
       <HeroSection/>
       <FeaturesOverview/>
       <Testimonials/>
+      <Contact/>
       <Footer/>
     </div>
   );

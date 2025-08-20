@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { useUser } from "@clerk/nextjs"; 
+import { useUser } from "@clerk/nextjs";
 // --- Loading Component ---
 const Loading = () => (
     <div className="flex justify-center items-center p-8">
@@ -19,39 +19,43 @@ export default function App() {
 
     const handleGenerate = async () => {
         setLoading(true);
-        setPlan(null); // Clear previous plan
-        const userInput = {
-            name: "Abi",
-            age: 19,
-            gender: "male",
-            height_cm: 167,
-            weight_kg: 49,
-            activity_level: "moderate",
-            fitness_goal: "bulk",
-            workout_preference: "gym",
-            diet_preference: "non-veg",
-            equipment_available: "none",
-            injuries: "none",
-        };
+        setPlan(null);
+
+        // Make sure the user is loaded before proceeding
+        if (!isLoaded || !user) {
+            setPlan("Could not get user information. Please try again.");
+            setLoading(false);
+            return;
+        }
 
         try {
-            const res = await fetch("/api/fitness", {
+            // Step 1: Fetch user data from your new API route
+            const userResponse = await fetch(`/api/user/${user.id}`);
+
+            if (!userResponse.ok) {
+                throw new Error('Failed to fetch user data from the database.');
+            }
+
+            const userData = await userResponse.json();
+
+            // Step 2: Use the fetched data to generate the fitness plan
+            const fitnessResponse = await fetch("/api/fitness", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(userInput),
+                body: JSON.stringify(userData), // Use the data from the database here
             });
-            
-            if (res.ok) {
-                const markdownText = await res.text();
+
+            if (fitnessResponse.ok) {
+                const markdownText = await fitnessResponse.text();
                 setPlan(markdownText);
             } else {
-                const errorData = await res.json().catch(() => ({ error: 'Failed to parse error response.' }));
+                const errorData = await fitnessResponse.json().catch(() => ({ error: 'Failed to parse error response.' }));
                 setPlan(`Error generating plan: ${errorData.error || 'Unknown error'}`);
             }
 
         } catch (error) {
             console.error("API fetch error:", error);
-            setPlan("An error occurred while trying to generate the plan.");
+            setPlan(`An error occurred: ${error.message}`);
         } finally {
             setLoading(false);
         }
@@ -59,7 +63,7 @@ export default function App() {
 
     const { isLoaded, isSignedIn, user } = useUser();
     if (!isLoaded || !isSignedIn) {
-        return <div className='h-[80vh]'><Loading/></div>;
+        return <div className='h-[80vh]'><Loading /></div>;
     }
 
     return (
@@ -99,12 +103,12 @@ export default function App() {
                                 */}
                                 <ReactMarkdown
                                     components={{
-                                        h1: ({node, ...props}) => <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400 mb-6" {...props} />,
-                                        h2: ({node, ...props}) => <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400 mt-10 mb-5 border-b border-gray-700 pb-2" {...props} />,
-                                        p: ({node, ...props}) => <p className="text-gray-300 mb-4 leading-relaxed" {...props} />,
-                                        ul: ({node, ...props}) => <ul className="list-disc pl-5 mb-6 space-y-3" {...props} />,
-                                        li: ({node, ...props}) => <li className="text-gray-300" {...props} />,
-                                        strong: ({node, ...props}) => <strong className="font-bold text-purple-300" {...props} />,
+                                        h1: ({ node, ...props }) => <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400 mb-6" {...props} />,
+                                        h2: ({ node, ...props }) => <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400 mt-10 mb-5 border-b border-gray-700 pb-2" {...props} />,
+                                        p: ({ node, ...props }) => <p className="text-gray-300 mb-4 leading-relaxed" {...props} />,
+                                        ul: ({ node, ...props }) => <ul className="list-disc pl-5 mb-6 space-y-3" {...props} />,
+                                        li: ({ node, ...props }) => <li className="text-gray-300" {...props} />,
+                                        strong: ({ node, ...props }) => <strong className="font-bold text-purple-300" {...props} />,
                                     }}
                                 >
                                     {plan}
