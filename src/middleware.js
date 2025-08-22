@@ -6,6 +6,7 @@ const isPublicRoute = createRouteMatcher([
   '/about',
   '/contact',
   '/calculators/(.*)',
+  '/calculators',
   '/sign-in(.*)',
   '/sign-up(.*)',
   '/api/(.*)' // Assuming you want all API routes to be accessible
