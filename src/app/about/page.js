@@ -58,7 +58,7 @@ export default function App() {
                     <div className="space-y-4 text-center">
                         <h2 className="text-3xl font-bold text-purple-600">Our Technology</h2>
                         <p className="text-gray-300 leading-relaxed">
-                            This project is built on a modern tech stack to deliver a fast and responsive experience. We use <strong className="text-purple-400">Next.js</strong> and <strong className="text-purple-400">React</strong> for the frontend, styled with <strong className="text-purple-400">Tailwind CSS</strong>. The intelligent core of our application is powered by <strong className="text-purple-400">Google's Gemini AI</strong>, which allows us to generate the highly personalized and detailed fitness plans that set us apart.
+                            This project is built on a modern tech stack to deliver a fast and responsive experience. We use <strong className="text-purple-400">Next.js</strong> and <strong className="text-purple-400">React</strong> for the frontend, styled with <strong className="text-purple-400">Tailwind CSS</strong>. The intelligent core of our application is powered by <strong className="text-purple-400">Google&apos;s Gemini AI</strong>, which allows us to generate the highly personalized and detailed fitness plans that set us apart.
                         </p>
                     </div>
 

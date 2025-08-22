@@ -12,7 +12,7 @@ export default function App() {
         {/* --- Title --- */}
         <div className="text-center">
             <h1 className="text-4xl font-bold text-purple-600">Contact Us</h1>
-            <p className="text-gray-400 mt-1">We'd love to hear from you!</p>
+            <p className="text-gray-400 mt-1">We&apos;d love to hear from you!</p>
         </div>
 
         {/* --- Contact Form --- */}

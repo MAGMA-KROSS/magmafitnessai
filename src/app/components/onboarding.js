@@ -240,7 +240,7 @@ export default function Onboarding() {
               Magma<span className="text-purple-600">FitnessAI</span>
             </h1>
          
-          <p className="text-gray-400">Let's build your personalized profile</p>
+          <p className="text-gray-400">Let&apos;s build your personalized profile</p>
         </div>
         {/* Progress Bar */}
         <div className="mb-8">
