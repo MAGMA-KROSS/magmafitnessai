@@ -1,11 +1,10 @@
 import React from 'react'
-import Setting from '../components/onboarding'
+import Onboarding from '../components/onboarding' // Corrected import
 
-function dashboard() {
+function OnboardingPage() { // Clear name
   return (
-    <Setting/>
-
+    <Onboarding/>
   )
 }
 
-export default dashboard
+export default OnboardingPage

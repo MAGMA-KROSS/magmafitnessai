@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useUser } from "@clerk/nextjs";
+import Image from 'next/image';
 // --- Loading Component ---
 const Loading = () => (
     <div className="flex justify-center items-center p-8">
@@ -77,7 +78,14 @@ export default function App() {
                 <header className="flex flex-col items-center text-center mb-12">
                     <div className="relative group mb-4">
                         <div className="absolute -inset-1.5 bg-gradient-to-r from-purple-600 to-pink-500 rounded-full transition-all duration-500 blur group-hover:blur-lg opacity-75"></div>
-                        <img src={user.imageUrl} alt="User Avatar" className="relative w-32 h-32 rounded-full border-4 border-gray-900 object-cover" onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/128x128/ec4899/111827?text=NS'; }} />
+
+                        <Image
+                            src={user.imageUrl}
+                            alt="User Avatar"
+                            width={128}
+                            height={128}
+                            className="relative rounded-full border-4 border-gray-900 object-cover"
+                        />
                     </div>
                     <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">{user.fullName}</h1>
                     <p className="text-gray-400 mt-2">Welcome back to your dashboard.</p>

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Dumbbell, Waves, Users, Zap, Utensils, HeartPulse, ShieldCheck, Info, Link } from 'lucide-react';
 import { useAuth } from "@clerk/nextjs";
+import Link from 'next/link'; // Add this line
 // Neon glow button component
 const NeonButton = ({ children, onClick, disabled = false, type = 'button', className = '' }) => (
   <button
@@ -20,7 +21,7 @@ const NeonButton = ({ children, onClick, disabled = false, type = 'button', clas
 );
 
 // Main Onboarding Component
-export default function onboarding() {
+export default function Onboarding() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     age: '',
@@ -220,9 +221,11 @@ export default function onboarding() {
           <h2 className="mt-4 text-3xl font-extrabold text-white">Setup Complete!</h2>
           <p className="mt-2 text-gray-300">Welcome to MagamFitnessAI. Your personalized plan is being generated.</p>
           <p className="mt-4 text-sm text-gray-500">You can now close this window.</p>
-          <NeonButton>
-            <Link href="/dashboard">Personalized Plan</Link>
-          </NeonButton>
+          <Link href="/dashboard">
+            <NeonButton>
+              Personalized Plan
+            </NeonButton>
+          </Link>
         </motion.div>
       </div>
     );
@@ -233,12 +236,12 @@ export default function onboarding() {
       <div className="w-full max-w-2xl">
         {/* Header */}
         <div className="text-center mb-8">
-        
-            <h1 className="text-4xl font-extrabold tracking-tighter text-white">
-              Magma<span className="text-purple-600">FitnessAI</span>
-            </h1>
-         
-          <p className="text-gray-400"><p>Let&spos;s build your personalized profile</p></p>
+
+          <h1 className="text-4xl font-extrabold tracking-tighter text-white">
+            Magma<span className="text-purple-600">FitnessAI</span>
+          </h1>
+
+          <p className="text-gray-400"><p>Let&apos;s build your personalized profile</p></p>
         </div>
         {/* Progress Bar */}
         <div className="mb-8">
