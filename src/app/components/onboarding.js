@@ -2,9 +2,12 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Dumbbell, Waves, Users, Zap, Utensils, HeartPulse, ShieldCheck, Info, Link } from 'lucide-react';
+// CORRECTED: Removed 'Link' from this import line to resolve the conflict.
+import { ChevronLeft, ChevronRight, Dumbbell, Waves, Users, Zap, Utensils, HeartPulse, ShieldCheck, Info } from 'lucide-react';
 import { useAuth } from "@clerk/nextjs";
-import Link from 'next/link'; // Add this line
+// This is the correct Link component for navigation
+import Link from 'next/link';
+
 // Neon glow button component
 const NeonButton = ({ children, onClick, disabled = false, type = 'button', className = '' }) => (
   <button
@@ -70,20 +73,18 @@ export default function Onboarding() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = await getToken(); // 🔑 Get token before request
-      console.log("Token:", token); // Debugging - check if you are actually getting it
+      const token = await getToken();
 
       const res = await fetch("/api/user/onboarding", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // ✅ Pass token
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
       });
 
       if (res.ok) {
-
         setIsComplete(true);
       } else {
         const errorData = await res.json();
@@ -215,17 +216,15 @@ export default function Onboarding() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="text-center p-8 bg-gray-900/50 border border-purple-600/30 rounded-2xl shadow-2xl shadow-Let's build your personalized profile/10 max-w-md"
+          className="text-center p-8 bg-gray-900/50 border border-purple-600/30 rounded-2xl shadow-2xl shadow-purple-500/10 max-w-md"
         >
           <ShieldCheck className="mx-auto h-16 w-16 text-purple-600" />
           <h2 className="mt-4 text-3xl font-extrabold text-white">Setup Complete!</h2>
           <p className="mt-2 text-gray-300">Welcome to MagamFitnessAI. Your personalized plan is being generated.</p>
-          <p className="mt-4 text-sm text-gray-500">You can now close this window.</p>
-          <Link href="/dashboard">
-            <NeonButton>
-              Personalized Plan
-            </NeonButton>
-          </Link>
+          <p className="mt-4 text-sm text-gray-500">You can now proceed to your dashboard.</p>
+          <NeonButton>
+            <Link href="/dashboard">Go to Dashboard</Link>
+          </NeonButton>
         </motion.div>
       </div>
     );
@@ -236,12 +235,12 @@ export default function Onboarding() {
       <div className="w-full max-w-2xl">
         {/* Header */}
         <div className="text-center mb-8">
-
-          <h1 className="text-4xl font-extrabold tracking-tighter text-white">
-            Magma<span className="text-purple-600">FitnessAI</span>
-          </h1>
-
-          <p className="text-gray-400"><p>Let&apos;s build your personalized profile</p></p>
+        
+            <h1 className="text-4xl font-extrabold tracking-tighter text-white">
+              Magma<span className="text-purple-600">FitnessAI</span>
+            </h1>
+         
+          <p className="text-gray-400">Let's build your personalized profile</p>
         </div>
         {/* Progress Bar */}
         <div className="mb-8">
