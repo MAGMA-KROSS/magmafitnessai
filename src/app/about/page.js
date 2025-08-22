@@ -27,7 +27,7 @@ export default function App() {
                     <div className="space-y-4 text-center">
                         <h2 className="text-3xl font-bold text-purple-600">Our Mission</h2>
                         <p className="text-gray-300 leading-relaxed">
-                            At MagmaFitnessAI, our mission is to make fitness accessible, personal, and intelligent for everyone. We believe that achieving your health goals shouldn't be a guessing game. By leveraging the power of cutting-edge AI, we provide you with the tools and insights you need to build a stronger, healthier you.
+                            At MagmaFitnessAI, our mission is to make fitness accessible, personal, and intelligent for everyone. We believe that achieving your health goals shouldn&apos;t be a guessing game. By leveraging the power of cutting-edge AI, we provide you with the tools and insights you need to build a stronger, healthier you.
                         </p>
                     </div>
 
